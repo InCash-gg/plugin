@@ -1,0 +1,58 @@
+plugins {
+    id 'java'
+    id("xyz.jpenilla.run-paper") version "2.3.1"
+    id("com.github.johnrengelman.shadow") version '7.1.2'
+}
+
+allprojects {
+    apply plugin: 'java-library'
+    apply plugin: 'com.github.johnrengelman.shadow'
+
+    group = 'gg.incash'
+    version = '1.0'
+
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+
+    compileJava.options.encoding = 'UTF-8'
+    tasks.withType(JavaCompile) {
+        options.encoding = 'UTF-8'
+    }
+
+    repositories {
+        mavenCentral()
+        mavenLocal()
+
+        maven {
+            name = 'spigotmc-repo'
+            url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
+        }
+        maven {
+            name = 'sonatype-repo'
+            url = 'https://oss.sonatype.org/content/repositories/snapshots'
+        }
+        maven {
+            name = 'papermc'
+            url = 'https://repo.papermc.io/repository/maven-public/'
+        }
+    }
+
+    shadowJar {
+        dependencies {
+            exclude(dependency('org.jetbrains:annotations'))
+        }
+    }
+}
+
+dependencies {
+    implementation project(':bukkit')
+    implementation project(':bungeecord')
+    implementation project(':velocity')
+}
+
+subprojects {
+    tasks.withType(com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar).configureEach {
+        archiveFileName = "incash-${project.name}-${archiveVersion.get()}.${archiveExtension.get()}"
+        destinationDirectory = file("${rootProject.projectDir}/builds")
+    }
+}

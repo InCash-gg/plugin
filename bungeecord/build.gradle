@@ -1,0 +1,19 @@
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow'
+}
+
+group = 'gg.incash'
+version = '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation project(':common')
+
+    compileOnly 'net.md-5:bungeecord-api:1.21-R0.4'
+    implementation 'io.socket:socket.io-client:2.1.0'
+}
+
