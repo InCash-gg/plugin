@@ -1,5 +1,5 @@
 # Change it with your own risk
-apiUri: "http://localhost:8081/server-gateway"
+apiUri: "https://incash.gg/server-gateway"
 
 # Replace it with your shop id, that you can find at Server - Main
 shopId: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
@@ -8,4 +8,4 @@ shopId: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 serverId: "xXxXXxXxXXxXxx"
 
 # Change to true if you need advanced log
-debug: true
+debug: false
